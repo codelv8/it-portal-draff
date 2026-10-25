@@ -6,9 +6,11 @@ A clickable UX/UI draft for a hospital IT work management portal. The approved v
 
 ## Quick start
 
-**Option A — One HTML file (recommended for reviewing):** open `it-portal-aurora-standalone.html` in a browser. It contains embedded CSS, JavaScript and mock data. All portal navigation is routed through one file using `?page=...`. Browser file origin rules vary; for persistent mock changes, serve it over HTTP.
+**Option A — Multi-file repository (canonical for new work):** serve `index.html` and all assets over HTTP as shown below. This is the version controlled source of truth. For Agent-driven UI development, change the shared `assets/css/styles.css` and `assets/js/app.js` rather than creating page-local styles.
 
-**Option B — Multi-file pages:** open `index.html`, or start a local static server for reliable navigation and localStorage:
+**Standalone reviewer build:** the separately downloadable `it-portal-aurora-standalone.html` is a convenience export and is intentionally **not committed** to avoid two editable copies of the same UI. Regenerate it from the canonical source whenever needed.
+
+**Start local server:** open `index.html`, or start a local static server for reliable navigation and localStorage:
 
 ```bash
 cd it-portal-aurora-draft
