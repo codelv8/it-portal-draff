@@ -1,0 +1,43 @@
+{
+  "$schemaVersion": "1.0",
+  "name": "IT Portal Aurora Coral UI Contract",
+  "version": "1.0.0",
+  "ownerDecisionDate": "2026-10-25",
+  "reference": "DESIGN.md",
+  "userVisualConfigFile": "design-config.json",
+  "sourceOfTruthCss": "assets/css/styles.css",
+  "locked": {
+    "visualDirection": "Aurora Gradient reference",
+    "layout": "portal",
+    "surface": "glass",
+    "palette": "coral",
+    "mode": "light",
+    "cornerRadius": 32,
+    "fontFamily": "LINE Seed Sans TH",
+    "mascotEnabled": false
+  },
+  "cssVariables": {
+    "--bg": "#fbf8f8",
+    "--ink": "#332d38",
+    "--ink-soft": "#5d5664",
+    "--muted": "#756776",
+    "--coral": "#f46f75",
+    "--coral-dark": "#d54e5c",
+    "--coral-soft": "#fff1ee",
+    "--peach": "#ffd9bd",
+    "--lavender": "#eee0ff",
+    "--mint": "#d9f6e9",
+    "--radius": "32px",
+    "--radius-small": "19px",
+    "--surface": "rgba(255,255,255,.76)",
+    "--surface-strong": "rgba(255,255,255,.92)",
+    "--surface-muted": "rgba(255,255,255,.52)"
+  },
+  "requiredCssPatterns": [
+    ".app-shell", ".sidebar", ".workspace", ".topbar", ".glass", ".card", ".btn-primary", ".page-heading", ".badge", ".modal-backdrop", ".kanban-board", ".gantt", "prefers-reduced-motion"
+  ],
+  "htmlPages": [
+    "index.html", "login.html", "my-work.html", "task-detail.html", "team-board.html", "projects.html", "project-detail.html", "roadmap.html", "kpi.html", "reports.html", "compliance.html", "service-desk.html", "notifications.html", "people.html", "activity.html", "settings.html"
+  ],
+  "forbiddenExternalUiFrameworks": ["bootstrap", "tailwind", "react", "vue", "angular", "materialize", "bulma", "cdn.jsdelivr.net", "unpkg.com"]
+}

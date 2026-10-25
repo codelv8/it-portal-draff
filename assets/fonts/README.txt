@@ -1,0 +1,1 @@
+Optional: Place the official LINE Seed Sans TH WOFF2 webfont files here, named LINESeedSansTH_W_Rg.woff2 and LINESeedSansTH_W_Bd.woff2. Font files are not bundled in this prototype. See https://seed.line.me/index_th.html for official distribution and license.

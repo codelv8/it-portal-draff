@@ -1,0 +1,18 @@
+name: UI Design Contract
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-design-contract:
+    name: Check approved visual baseline
+    runs-on: ubuntu-latest
+    container: php:8.4-cli
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Verify locked theme, pages and assets
+        run: php scripts/check-design-contract.php

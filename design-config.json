@@ -1,0 +1,15 @@
+{
+  "visualDirection": "Aurora Gradient reference",
+  "layout": "portal",
+  "surface": "glass",
+  "palette": "coral",
+  "cornerRadius": 32,
+  "mode": "light",
+  "fontFamily": "LINE Seed Sans TH",
+  "mascot": {
+    "enabled": false,
+    "styleIndex": null,
+    "animation": null,
+    "style": null
+  }
+}

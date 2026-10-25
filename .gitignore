@@ -1,0 +1,29 @@
+# Sensitive configuration / local deployment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.sqlite
+storage/private/
+storage/logs/
+logs/
+cache/
+
+# Local dependencies, tooling and generated previews
+vendor/
+node_modules/
+.DS_Store
+.idea/
+.vscode/
+coverage/
+playwright-report/
+test-results/
+
+# Licensed fonts must not be redistributed in the repository
+assets/fonts/*.woff
+assets/fonts/*.woff2
+assets/fonts/*.ttf
+assets/fonts/*.otf
