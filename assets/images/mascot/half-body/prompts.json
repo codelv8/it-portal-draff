@@ -1,0 +1,71 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-10-25",
+  "variant": "half-body",
+  "master": "welcome.png",
+  "identityReference": "../welcome.png",
+  "masterPrompt": "Use supplied image only as character identity/style reference. Generate ONE new compact HALF-BODY chibi anime adult Thai male IT mascot, welcoming wave and friendly smile. Same short black student haircut, black rectangular glasses, coral polo and plain IT ID badge. Square 1:1 PNG composition, head through waist ONLY, no legs, very large face and clear hand gesture, simplified clean cel shading readable at 32px. Face center horizontally near upper center, all hair and waving hand fully inside square with 8 percent transparent margin, waist ending softly at bottom interior. True transparent empty background: alpha zero outside character. No backdrop, no gradient, no halo, no drop shadow, no white sticker outline, no lettering, no watermark. One character, one reaction. Keep adult identity and exact clothing. This becomes master reference for 9 more half-body reactions.",
+  "reactions": [
+    {
+      "reaction": "welcome",
+      "file": "welcome.png",
+      "reference": "../welcome.png",
+      "prompt": "Use supplied image only as character identity/style reference. Generate ONE new compact HALF-BODY chibi anime adult Thai male IT mascot, welcoming wave and friendly smile. Same short black student haircut, black rectangular glasses, coral polo and plain IT ID badge. Square 1:1 PNG composition, head through waist ONLY, no legs, very large face and clear hand gesture, simplified clean cel shading readable at 32px. Face center horizontally near upper center, all hair and waving hand fully inside square with 8 percent transparent margin, waist ending softly at bottom interior. True transparent empty background: alpha zero outside character. No backdrop, no gradient, no halo, no drop shadow, no white sticker outline, no lettering, no watermark. One character, one reaction. Keep adult identity and exact clothing. This becomes master reference for 9 more half-body reactions."
+    },
+    {
+      "reaction": "guide",
+      "file": "guide.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: friendly confident smile, pointing with one hand toward the left, keep the pointing finger fully inside canvas. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "typing",
+      "file": "typing.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: focused gentle smile, both hands typing on a small simple laptop positioned at waist level. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "repair",
+      "file": "repair.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: concentrated friendly expression, holding one small screwdriver near chest, small computer component at waist level. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "success",
+      "file": "success.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: delighted smile, both hands giving thumbs up beside chest. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "question",
+      "file": "question.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: thoughtful puzzled expression, one hand lightly touching chin, raised eyebrow. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "warning",
+      "file": "warning.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: attentive concerned expression, open palm raised in a gentle stop gesture near shoulder. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "sorry",
+      "file": "sorry.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: apologetic respectful slight bow with palms pressed together at chest. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "loading",
+      "file": "loading.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: patient mildly expectant expression, glancing at wristwatch raised near chest, no clock symbols. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    },
+    {
+      "reaction": "thanks",
+      "file": "thanks.png",
+      "reference": "welcome.png",
+      "prompt": "Identity/style reference: supplied HALF-BODY IT mascot. Produce ONE new HALF-BODY reaction of exactly the same adult Thai male chibi anime character, black rectangular glasses, neat short black student haircut, coral polo shirt and plain ID badge with no text. Reaction: warm grateful smile, looking forward with palms together in a Thai wai. SQUARE 1:1 transparent PNG canvas, head through waist only, NO legs, large expressive face. Keep same head scale and centered face placement as reference, simplified crisp cel shading for 32px UI stickers. All hair, hands and props fully within canvas with at least 6 percent transparent margin on every edge. Waist crop is intentional but must end inside canvas. Transparent alpha-zero background, NO black backdrop, NO halo, NO gradient, NO white outline, NO shadow, NO text, NO watermark. Single character, no extra symbols. Do not redraw as full body."
+    }
+  ],
+  "constraints": "Square transparent PNGs, head through waist, no text, no watermark, no white sticker border. Original full-body assets preserved."
+}

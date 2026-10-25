@@ -1,0 +1,63 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-10-25",
+  "master": "welcome.png",
+  "masterPrompt": "Use case: illustration-story. Create a single high quality web mascot PNG with true transparent background. One original Thai adult male IT worker in charming clean chibi anime style, 2.5 heads tall, short black student haircut close trimmed sides and neat straight fringe, black rectangular glasses, warm friendly eyes, coral polo shirt, dark charcoal trousers, simple sneakers, small plain IT ID badge without text. Full body completely visible, generous transparent margin, no shadow panel, no backdrop, no text, no watermark. Pose: welcome, smiling and waving one hand, other hand holding closed laptop. Consistent polished crisp linework, soft cel shading, coral plum palette suitable for Aurora glass hospital IT Portal. This is the master identity reference for a series of ten poses.",
+  "reactions": [
+    {
+      "reaction": "guide",
+      "file": "guide.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: friendly pointing to the left to introduce a service. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "typing",
+      "file": "typing.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: sitting with a laptop on lap, focused and cheerful typing. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "repair",
+      "file": "repair.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: kneeling beside a small desktop computer tower, holding screwdriver, repairing. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "success",
+      "file": "success.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: happy smile giving two thumbs up. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "question",
+      "file": "question.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: thoughtful puzzled expression, one hand touching chin. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "warning",
+      "file": "warning.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: concerned attentive expression, one hand raised palm forward as a gentle warning. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "sorry",
+      "file": "sorry.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: apologetic small respectful bow with palms together. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "loading",
+      "file": "loading.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: patiently checking a wristwatch while holding a laptop. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    },
+    {
+      "reaction": "thanks",
+      "file": "thanks.png",
+      "reference": "welcome.png",
+      "prompt": "Edit target: supplied master mascot. Create ONE standalone reaction of the exact same adult Thai male chibi/anime IT worker: same short black student haircut, black glasses, coral polo, plain ID badge without writing, charcoal trousers and sneakers, identical face and drawing style. Pose: warm grateful smile, palms together in a Thai wai. Full body and every prop entirely inside canvas with 10% empty margin. True transparent background, NO black backdrop, NO ambient halo, NO gradient rectangle, NO ground plane, NO shadow, no text, no symbols, no watermark. Background pixels outside character must have alpha 0. Preserve identity but change pose as instructed."
+    }
+  ],
+  "note": "Synthetic original mascot. No real person, hospital branding, patient data or credentials used. PNG alpha preserved without post-processing."
+}

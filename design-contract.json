@@ -1,7 +1,7 @@
 {
   "$schemaVersion": "1.0",
   "name": "IT Portal Aurora Coral UI Contract",
-  "version": "2.0.0",
+  "version": "3.1.0",
   "ownerDecisionDate": "2026-10-25",
   "reference": "DESIGN.md",
   "userVisualConfigFile": "design-config.json",
@@ -14,7 +14,7 @@
     "mode": "dark",
     "cornerRadius": 32,
     "fontFamily": "LINE Seed Sans TH",
-    "mascotEnabled": false
+    "mascotEnabled": true
   },
   "cssVariables": {
     "--bg": "#fbf8f8",
@@ -31,7 +31,10 @@
     "--radius-small": "19px",
     "--surface": "rgba(255,255,255,.76)",
     "--surface-strong": "rgba(255,255,255,.92)",
-    "--surface-muted": "rgba(255,255,255,.52)"
+    "--surface-muted": "rgba(255,255,255,.52)",
+    "--action-fill": "#be4355",
+    "--action-hover": "#a9364a",
+    "--link-ink": "#be4355"
   },
   "requiredCssPatterns": [
     ".app-shell",
@@ -54,21 +57,29 @@
   ],
   "htmlPages": [
     "index.html",
-    "login.html",
-    "my-work.html",
-    "task-detail.html",
-    "team-board.html",
-    "projects.html",
-    "project-detail.html",
-    "roadmap.html",
-    "kpi.html",
-    "reports.html",
-    "compliance.html",
-    "service-desk.html",
-    "notifications.html",
-    "people.html",
-    "activity.html",
-    "settings.html"
+    "duty.html",
+    "portal.html",
+    "announcements.html",
+    "guide.html",
+    "e-learning.html",
+    "hait.html",
+    "digital-policy.html",
+    "admin/index.html",
+    "admin/login.html",
+    "admin/my-work.html",
+    "admin/task-detail.html",
+    "admin/team-board.html",
+    "admin/projects.html",
+    "admin/project-detail.html",
+    "admin/roadmap.html",
+    "admin/kpi.html",
+    "admin/reports.html",
+    "admin/compliance.html",
+    "admin/service-desk.html",
+    "admin/notifications.html",
+    "admin/people.html",
+    "admin/activity.html",
+    "admin/settings.html"
   ],
   "forbiddenExternalUiFrameworks": [
     "bootstrap",
@@ -97,8 +108,148 @@
         "--coral": "#ffa0a6",
         "--coral-dark": "#ffabb2",
         "--surface": "rgba(37,33,51,.80)",
-        "--surface-strong": "rgba(51,44,64,.95)"
+        "--surface-strong": "rgba(51,44,64,.95)",
+        "--action-fill": "#b7435d",
+        "--action-hover": "#a33853",
+        "--link-ink": "#ffabb2"
       }
+    }
+  },
+  "compatibilityRedirects": {
+    "login.html": "admin/login.html",
+    "my-work.html": "admin/my-work.html",
+    "task-detail.html": "admin/task-detail.html",
+    "team-board.html": "admin/team-board.html",
+    "projects.html": "admin/projects.html",
+    "project-detail.html": "admin/project-detail.html",
+    "roadmap.html": "admin/roadmap.html",
+    "kpi.html": "admin/kpi.html",
+    "reports.html": "admin/reports.html",
+    "compliance.html": "admin/compliance.html",
+    "service-desk.html": "admin/service-desk.html",
+    "notifications.html": "admin/notifications.html",
+    "people.html": "admin/people.html",
+    "activity.html": "admin/activity.html",
+    "settings.html": "admin/settings.html"
+  },
+  "entrypoints": {
+    "index.html": {
+      "page": "home",
+      "area": "public"
+    },
+    "duty.html": {
+      "page": "duty",
+      "area": "public"
+    },
+    "portal.html": {
+      "page": "portal",
+      "area": "public"
+    },
+    "announcements.html": {
+      "page": "announcements",
+      "area": "public"
+    },
+    "guide.html": {
+      "page": "guide",
+      "area": "public"
+    },
+    "e-learning.html": {
+      "page": "e-learning",
+      "area": "public"
+    },
+    "hait.html": {
+      "page": "hait",
+      "area": "public"
+    },
+    "digital-policy.html": {
+      "page": "digital-policy",
+      "area": "public"
+    },
+    "admin/index.html": {
+      "page": "dashboard",
+      "area": "admin"
+    },
+    "admin/login.html": {
+      "page": "login",
+      "area": "admin"
+    },
+    "admin/my-work.html": {
+      "page": "my-work",
+      "area": "admin"
+    },
+    "admin/task-detail.html": {
+      "page": "task-detail",
+      "area": "admin"
+    },
+    "admin/team-board.html": {
+      "page": "team-board",
+      "area": "admin"
+    },
+    "admin/projects.html": {
+      "page": "projects",
+      "area": "admin"
+    },
+    "admin/project-detail.html": {
+      "page": "project-detail",
+      "area": "admin"
+    },
+    "admin/roadmap.html": {
+      "page": "roadmap",
+      "area": "admin"
+    },
+    "admin/kpi.html": {
+      "page": "kpi",
+      "area": "admin"
+    },
+    "admin/reports.html": {
+      "page": "reports",
+      "area": "admin"
+    },
+    "admin/compliance.html": {
+      "page": "compliance",
+      "area": "admin"
+    },
+    "admin/service-desk.html": {
+      "page": "service-desk",
+      "area": "admin"
+    },
+    "admin/notifications.html": {
+      "page": "notifications",
+      "area": "admin"
+    },
+    "admin/people.html": {
+      "page": "people",
+      "area": "admin"
+    },
+    "admin/activity.html": {
+      "page": "activity",
+      "area": "admin"
+    },
+    "admin/settings.html": {
+      "page": "settings",
+      "area": "admin"
+    }
+  },
+  "mascotReactions": [
+    "welcome",
+    "guide",
+    "typing",
+    "repair",
+    "success",
+    "question",
+    "warning",
+    "sorry",
+    "loading",
+    "thanks"
+  ],
+  "mascotVariants": {
+    "full": {
+      "directory": "",
+      "square": false
+    },
+    "half-body": {
+      "directory": "half-body/",
+      "square": true
     }
   }
 }

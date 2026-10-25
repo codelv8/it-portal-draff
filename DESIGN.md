@@ -1,6 +1,6 @@
 # IT Portal Design System — Aurora Coral Light + Dark Glass
 
-> **Status: ACCEPTED UI BASELINE · v2.0 · 2026-10-25**  
+> **Status: ACCEPTED UI BASELINE · v3.1 · 2026-10-25**
 > Scope: every existing and future page, module, partial, dialog, and component in `codelv8-org/it-portal`.
 >
 > **Rule:** When the mock UI and this document disagree, do not improvise. Treat `design-config.json` as the user's locked visual direction and the running baseline in `assets/css/styles.css` + existing HTML/JS as the reference implementation. Open a design-change proposal before modifying visual identity.
@@ -9,7 +9,7 @@
 
 Hospital IT work-management portal for **IT Staff** and **IT Lead**, optionally Executive Viewer later. It connects daily tasks, team workload, projects, roadmap, KPI, evidence, governance and reports.
 
-**Design identity:** calm professional **Aurora Gradient** in **Light + Dark**, with **coral** as the action accent, translucent **glass** surfaces, **32px panel radius**, Thai-first **LINE Seed Sans TH**, and **no mascot**. **Dark is the new default** as explicitly approved on 2026-10-25. This remains Aurora Glass, **not** the retired neon/HUD design.
+**Design identity:** calm professional **Aurora Gradient** in **Light + Dark**, with **coral** as the action accent, translucent **glass** surfaces, **32px panel radius**, Thai-first **LINE Seed Sans TH**, and **approved static chibi IT mascot illustrations**. **Dark is the new default** as explicitly approved on 2026-10-25. This remains Aurora Glass, **not** the retired neon/HUD design.
 
 Visual trade-off accepted: Light keeps the original airy look; Dark reduces glare, but extra translucent layers can compromise readability. Therefore keep content legible in **both** modes, using stronger foreground / surface values on tables, forms and dense screens. Clarity and safe operation outrank decorative blur.
 
@@ -27,7 +27,7 @@ Visual trade-off accepted: Light keeps the original airy look; Dark reduces glar
 | Main panel radius | **32px** | `--radius`, `.glass` panels, dialog |
 | Inner/card radius | **19px** | `--radius-small`, small surfaces; buttons ~15px, input ~15px |
 | Font | **LINE Seed Sans TH** | fallback: Noto Sans Thai / Tahoma / system-ui |
-| Mascot | **Disabled** | no mascots, avatar illustrations, assistant characters or animations |
+| Mascot | **Enabled — ADR-0003** | ten consistent static chibi/anime IT-worker reactions in full and half-body variants; decorative, contextual and never a substitute for status text |
 | Technology | HTML + CSS + Vanilla JS; later Native PHP | do not introduce Tailwind, Bootstrap, React or a new UI library without approval |
 
 **Canonical Light token layer** in `assets/css/styles.css` (`:root`), preserved for backward compatibility:
@@ -117,10 +117,10 @@ Reuse existing classes. See [`docs/COMPONENTS.md`](docs/COMPONENTS.md) for imple
 ## 6. How an AI Agent adds a new page or component
 
 1. Read `AGENTS.md`, this file, `design-config.json`, `docs/COMPONENTS.md`, `docs/PAGE-MAP.md` and `docs/UI-REVIEW.md`.
-2. Open `index.html` and the nearest existing screen; inspect the **actual** `.glass`/`.btn`/`.badge` styles and patterns before writing any markup.
+2. Open `admin/index.html` and the nearest existing workspace screen; inspect the **actual** `.glass`/`.btn`/`.badge` styles and patterns before writing any markup.
 3. Choose a related approved screen (task details, project detail, reporting, etc.). Reuse its shell, spacing, typography, filters, states and empty/loading/error behaviors.
 4. Use the current design tokens and components, not standalone style attributes or a new framework. If a genuinely new pattern is necessary, extend the shared implementation and update `docs/COMPONENTS.md`.
-5. For a new page: add a thin HTML entrypoint with `<body data-page="new-page">`, existing CSS + shared scripts; register route + heading + navigation + render handler inside `assets/js/app.js`. Update `docs/PAGE-MAP.md`.
+5. For a new page: add a thin HTML entrypoint with `<body data-area="admin" data-page="new-page">`, existing CSS + shared scripts; register route + heading + navigation + render handler inside `assets/js/app.js`. Update `docs/PAGE-MAP.md`.
 6. Test at 390px, 900px, 1440px and 1728px; compare against existing Dashboard, My Work and Team Board baseline. Check keyboard navigation and real screen states.
 7. Run `php scripts/check-design-contract.php`. Fill out `.github/PULL_REQUEST_TEMPLATE.md` with comparison images for desktop/mobile and explain any intentional deviation.
 8. Do not claim design QA passed if screenshots/browser tests were not actually run. Explicitly report missing verification.
@@ -139,7 +139,7 @@ Visual identity changes (primary palette, modes, font, 32px radius, mascot, side
 - **Dark is the default** for a new browser. Users can switch using the **sun/moon button** in the shared Topbar or Login; Settings → Theme mode provides a Light/Dark segmented choice. Selection survives page navigation via `localStorage['it-portal-theme-v1']` and is **not** erased by Reset Mock Data.
 - The document root uses `data-theme="light"` for Light and `data-theme="dark"` for Dark. Until the JavaScript initializes, **no attribute intentionally resolves to Dark** via `html:not([data-theme="light"])` to avoid a white flash on initial load.
 - **Never duplicate CSS or create a separate `*-dark.html`.** Keep both modes in `assets/css/styles.css`; shared components, semantic badge labels and states must be identical. New components require **Light and Dark** styles and focus/hover/disabled/empty/error coverage.
-- Do not alter `mascot.enabled: false` as part of the theme change. Approved mascot assets (if added later) require a separate Product Owner decision and independent UI scope.
+- The original theme-only decision did not approve mascots. ADR-0003 separately records the subsequent explicit approval for ten static chibi IT-worker reactions on public and admin pages.
 
 ### v2 Dark tokens (authoritative)
 
@@ -156,3 +156,10 @@ Visual identity changes (primary palette, modes, font, 32px radius, mascot, side
 | `--radius` | `32px` | stable across modes |
 
 **Contrast and visual QA:** Dark does **not** mean pure black, high-saturation neon or glowing HUD borders. It uses plum-tinted glass with subdued Coral/Lavender ambient aurora. Coral primary buttons retain darker fills and white labels; pale Coral is an accent, not a low-contrast CTA fill. Verify at 390, 1440 and 1728px on **both** themes; verify Login, Dashboard, data tables, Kanban, Gantt, evidence, settings, all dialogs and print in Dark. Never use `color-scheme: dark` as a substitute for semantic token mapping.
+## Public services and mascot — ADR-0003
+
+The approved 2026-10-25 extension adds eight public entrypoints with a header/menu shell variant, while all existing workspace entrypoints move into `/admin/` with their sidebar/topbar retained. Shared CSS, theme state, buttons, icons and dialogs remain authoritative. Ten static transparent PNG mascot reactions are approved on both public and admin surfaces. The public landing hero may use a larger display heading; workspace heading scale is retained. Stronger semantic coral action fills improve text contrast without changing the locked accent tokens. See ADR-0003 and docs/PUBLIC-PORTAL-VERIFICATION.md for evidence and limitations.
+
+### Compact mascot extension
+
+The owner approved ten additional square half-body PNGs for limited-space components on 2026-10-25. Both variants share the same character identity; the hero keeps full-body art. The shared helper defaults to full-body and adds the half-body variant without changing user avatars, theme or workflow authority. Twenty reaction files are registered across two galleries. See docs/COMPONENTS.md and docs/HALF-BODY-MASCOT-VERIFICATION.md.

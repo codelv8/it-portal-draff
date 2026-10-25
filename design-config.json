@@ -7,9 +7,25 @@
   "mode": "dark",
   "fontFamily": "LINE Seed Sans TH",
   "mascot": {
-    "enabled": false,
+    "enabled": true,
     "styleIndex": null,
     "animation": null,
-    "style": null
+    "style": "chibi-anime-it",
+    "reactions": [
+      "welcome",
+      "guide",
+      "typing",
+      "repair",
+      "success",
+      "question",
+      "warning",
+      "sorry",
+      "loading",
+      "thanks"
+    ],
+    "variants": [
+      "full",
+      "half-body"
+    ]
   }
 }

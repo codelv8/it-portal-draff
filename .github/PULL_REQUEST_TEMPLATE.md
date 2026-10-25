@@ -11,7 +11,7 @@ What user problem does this solve? Which Staff / IT Lead / Admin workflow change
 
 ## Design contract
 
-- [ ] Matches `DESIGN.md`: Aurora Gradient / coral / glass / **Dark default + Light option** / 32px / LINE Seed Sans TH / mascot disabled
+- [ ] Matches `DESIGN.md`: Aurora Gradient / coral / glass / **Dark default + Light option** / 32px / LINE Seed Sans TH / approved static mascot (ADR-0003)
 - [ ] Uses shared app shell and tokens, no new UI framework or visual theme
 - [ ] Any intentional visual change has an approved ADR
 

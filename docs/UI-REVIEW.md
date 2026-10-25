@@ -9,7 +9,7 @@ Use for every changed UI page/component. A checked box is *evidence of a test*, 
 - [ ] LINE Seed Sans TH font stack; official binaries are **not** bundled.
 - [ ] Uses `assets/css/styles.css` and existing component classes; no Bootstrap/Tailwind/React/Material overlay.
 - [ ] Sidebar, topbar, breadcrumb, page title, CTA, badge and modal follow nearest approved screen.
-- [ ] No mascot or character art (current approved `mascot.enabled=false`), no decorative icon pack mismatch.
+- [ ] Approved static mascot only (`mascot.enabled=true`, ADR-0003); ten matching transparent PNGs, no decorative icon pack mismatch, no obstruction of controls.
 
 ## 2. Interaction and state (P0 for correctness)
 

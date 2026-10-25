@@ -17,30 +17,30 @@ cd it-portal-aurora-draft
 python -m http.server 8000
 ```
 
-Visit `http://localhost:8000` (or `/login.html` for the illustrative login).
+Visit `http://localhost:8000` (or `/admin/login.html` for the illustrative login).
 
 **Dependencies:** none. No Node, React, Tailwind, PHP server or database is needed for this design review.
 
-## Screens (16 HTML entrypoints)
+## Admin screens (16 HTML entrypoints under `/admin/`)
 
 | HTML file | Screen | Primary interactions |
 |---|---|---|
-| `login.html` | Login illustration | Preview role selection → demo entry (no auth) |
-| `index.html` | Dashboard | Summary, risks, pulse chart, focus tasks, milestones |
-| `my-work.html` | My Work | Search, priority/status filters, scopes, status edit, create task, CSV |
-| `task-detail.html?id=IT-2401` | Task Detail | Status/progress editing, local work-log notes |
-| `team-board.html` | Kanban Board | Drag and drop or status dropdown, workload panel |
-| `projects.html` | Project Portfolio | Search cards, view projects |
-| `project-detail.html?id=PRJ-01` | Project Detail | Tasks, milestones, strategic objective, evidence references |
-| `roadmap.html` | Strategic Roadmap | FY2570 Gantt, quarter filter, milestone schedule |
-| `kpi.html` | KPI & Evidence | KPI detail selector, evidence filters, simulated review, CSV |
-| `reports.html` | Reports | Daily / Weekly / Monthly / Executive, CSV, print/PDF |
-| `compliance.html` | Governance | CTAM+/OWASP/local-policy mock control mapping, filters |
-| `service-desk.html` | Service Desk | Ticket filter, view/create ticket, status edit |
-| `notifications.html` | Notifications | Read/unread, mark all as read, deep links |
-| `people.html` | People & Roles | Workload directory, proposed permissions matrix |
-| `activity.html` | Activity | Illustrative event timeline and audit field guidance |
-| `settings.html` | Settings | Light/Dark theme choice, compact density, simulated preferences, reset local mock data |
+| `admin/login.html` | Login illustration | Preview role selection → demo entry (no auth) |
+| `admin/index.html` | Dashboard | Summary, risks, pulse chart, focus tasks, milestones |
+| `admin/my-work.html` | My Work | Search, priority/status filters, scopes, status edit, create task, CSV |
+| `admin/task-detail.html?id=IT-2401` | Task Detail | Status/progress editing, local work-log notes |
+| `admin/team-board.html` | Kanban Board | Drag and drop or status dropdown, workload panel |
+| `admin/projects.html` | Project Portfolio | Search cards, view projects |
+| `admin/project-detail.html?id=PRJ-01` | Project Detail | Tasks, milestones, strategic objective, evidence references |
+| `admin/roadmap.html` | Strategic Roadmap | FY2570 Gantt, quarter filter, milestone schedule |
+| `admin/kpi.html` | KPI & Evidence | KPI detail selector, evidence filters, simulated review, CSV |
+| `admin/reports.html` | Reports | Daily / Weekly / Monthly / Executive, CSV, print/PDF |
+| `admin/compliance.html` | Governance | CTAM+/OWASP/local-policy mock control mapping, filters |
+| `admin/service-desk.html` | Service Desk | Ticket filter, view/create ticket, status edit |
+| `admin/notifications.html` | Notifications | Read/unread, mark all as read, deep links |
+| `admin/people.html` | People & Roles | Workload directory, proposed permissions matrix |
+| `admin/activity.html` | Activity | Illustrative event timeline and audit field guidance |
+| `admin/settings.html` | Settings | Light/Dark theme choice, compact density, simulated preferences, reset local mock data |
 
 Navigation and core interactions work in the browser. Edits are stored in browser `localStorage` where available. **No server requests are made** by the prototype.
 
@@ -55,7 +55,7 @@ Navigation and core interactions work in the browser. Edits are stored in browse
   "cornerRadius": 32,
   "mode": "dark",
   "fontFamily": "LINE Seed Sans TH",
-  "mascot": {"enabled": false, "styleIndex": null, "animation": null, "style": null}
+  "mascot": {"enabled": true, "styleIndex": null, "animation": null, "style": "chibi-anime-it"}
 }
 ```
 
@@ -67,7 +67,8 @@ The CSS selects **LINE Seed Sans TH**. The font binaries are **not bundled**; an
 
 1. Download the official LINE Seed TH package from https://seed.line.me/index_th.html and review the SIL Open Font License.
 2. Copy the WOFF2 webfont files to `assets/fonts/`, with the filenames `LINESeedSansTH_W_Rg.woff2` and `LINESeedSansTH_W_Bd.woff2` (Regular, Bold).
-3. For the one-file standalone HTML, the font may need to be installed locally in the OS, because that file does not include font binaries.
+3. Add the corresponding local URL to the shared @font-face source after installing licensed files. No absent font URL is requested by default.
+4. For the one-file standalone HTML, the font may need to be installed locally in the OS, because that file does not include font binaries.
 
 The font directory contains instructions, not font files.
 
@@ -99,3 +100,17 @@ Retain the UI vocabulary and data flows, then build a server-side Native PHP app
 The product owner's 2026-10-25 direction adds Dark to the approved Aurora/Coral/Glass visual system. **New browsers open in Dark**; users may switch Light/Dark from the sun/moon icon in Topbar/Login or Settings → Theme mode. The preference persists separately in `localStorage['it-portal-theme-v1']`, independent from `it-portal-aurora-mock-v2`; resetting mock records does not reset the theme. Appearance is demo-only and does not imply authentication.
 
 Both modes share one HTML/JS/CSS architecture, 32px panel radius and LINE Seed Sans TH. UI additions require screenshots/verification in both modes. See [ADR-0002](docs/decisions/ADR-0002-aurora-dark-mode.md).
+
+## Compact mascot set
+
+The original ten full-body mascot PNGs are retained. Ten additional half-body reactions live in `assets/images/mascot/half-body/`, with an exact generation-prompt manifest and a rendered overview. Settings previews both sets and small/circular assistant examples. Compact artwork is used by toast, sidebar, mobile Login and public resource-detail modals; personnel avatars remain initials.
+
+The shared helper supports `mascot(reaction, className, variant='full')`, with `variant='half-body'` for compact use. See [compact component documentation](docs/COMPONENTS.md) and [verification](docs/HALF-BODY-MASCOT-VERIFICATION.md). No additional product dependency, animation or backend is required.
+
+## Public portal + workspace (2026-10-25)
+
+Home is now `/`. Eight public pages reference the information architecture of the supplied CKHOS static clone while using original IT Portal copy and synthetic people/content. The sixteen existing workspace screens live under `/admin/`, including `/admin/login.html`. Legacy root workspace URLs redirect while retaining query/hash. Run the existing static server from this repository root; no PHP routing or rewrite rules are needed. This remains demo-only, with no authentication or hospital integration.
+
+Ten generated transparent PNG mascot reactions and their exact prompt manifest are in `assets/images/mascot/`. The approved character appears contextually on public/admin pages. Both themes retain their locked palette and share `it-portal-theme-v1`; mock storage remains `it-portal-aurora-mock-v2`.
+
+Validation: `php scripts/check-design-contract.php`; `node --check assets/js/app.js`; `node --check assets/js/mock-data.js`; also syntax-check public-data.js, public.js and redirect.js. Review evidence and limitations: `docs/PUBLIC-PORTAL-VERIFICATION.md`.

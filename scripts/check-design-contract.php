@@ -64,10 +64,34 @@ if ($config && $contract) {
             $fail("Visual identity mismatch: {$key} expected " . json_encode($expected) . ', actual ' . json_encode($actual));
         }
     }
-    if (($config['mascot']['styleIndex'] ?? null) !== null
+    if (($config['mascot']['enabled'] ?? false) !== true
+        || ($config['mascot']['styleIndex'] ?? null) !== null
+        || ($config['mascot']['style'] ?? null) !== 'chibi-anime-it'
         || ($config['mascot']['animation'] ?? null) !== null
-        || ($config['mascot']['style'] ?? null) !== null) {
-        $fail('Mascot remains disabled with null style, animation and styleIndex.');
+        || ($config['mascot']['reactions'] ?? []) !== ($contract['mascotReactions'] ?? [])
+        || ($config['mascot']['variants'] ?? []) !== array_keys($contract['mascotVariants'] ?? [])) {
+        $fail('Approved mascot requires the consistent chibi-anime-it identity, static artwork and registered reactions.');
+    }
+    $reactions = $contract['mascotReactions'] ?? [];
+    if (count($reactions) !== 10 || count(array_unique($reactions)) !== 10) {
+        $fail('Exactly ten distinct mascot reactions must be registered.');
+    }
+    $variants = $contract['mascotVariants'] ?? [];
+    if (array_keys($variants) !== ['full', 'half-body']) {
+        $fail('Mascot variants must include full and half-body.');
+    }
+    foreach ($variants as $variant => $variantConfig) {
+      foreach ($reactions as $reaction) {
+        $asset = $root . '/assets/images/mascot/' . ($variantConfig['directory'] ?? '') . $reaction . '.png';
+        $image = is_file($asset) ? @getimagesize($asset) : false;
+        if ($image === false || $image[2] !== IMAGETYPE_PNG) {
+            $fail('Missing or invalid mascot PNG: ' . $variant . '/' . $reaction);
+        } elseif (ord((string) file_get_contents($asset, false, null, 25, 1)) !== 6) {
+            $fail('Mascot PNG must retain RGBA transparency: ' . $variant . '/' . $reaction);
+        } elseif (($variantConfig['square'] ?? false) && $image[0] !== $image[1]) {
+            $fail('Compact mascot PNG must have a square canvas: ' . $reaction);
+        }
+      }
     }
     if (($config['mode'] ?? null) === 'dark'
         && ($config['cornerRadius'] ?? null) === 32
@@ -140,8 +164,12 @@ if ($contract && $app !== null) {
     }
     $expectedPages = $contract['htmlPages'] ?? [];
     $actualPages = array_map('basename', glob($root . '/*.html') ?: []);
+    foreach (glob($root . '/admin/*.html') ?: [] as $adminPage) {
+        $actualPages[] = 'admin/' . basename($adminPage);
+    }
     // One-file preview is a generated review artifact, not a page to maintain separately.
     $actualPages = array_values(array_diff($actualPages, ['it-portal-aurora-standalone.html']));
+    $actualPages = array_values(array_diff($actualPages, array_keys($contract['compatibilityRedirects'] ?? [])));
     sort($expectedPages);
     sort($actualPages);
     if ($expectedPages !== $actualPages) {
@@ -152,8 +180,10 @@ if ($contract && $app !== null) {
         if ($html === null) {
             continue;
         }
-        $key = $page === 'index.html' ? 'dashboard' : basename($page, '.html');
-        if (!preg_match('/<body\s+data-page="' . preg_quote($key, '/') . '"\s*>/i', $html)) {
+        $entry = $contract['entrypoints'][$page] ?? [];
+        $key = $entry['page'] ?? '';
+        $area = $entry['area'] ?? '';
+        if (!preg_match('/<body\s+data-area="' . preg_quote($area, '/') . '"\s+data-page="' . preg_quote($key, '/') . '"\s*>/i', $html)) {
             $fail("Invalid shared app entrypoint data-page in {$page}");
         }
         foreach (['assets/css/styles.css', 'assets/js/mock-data.js', 'assets/js/app.js'] as $asset) {
@@ -164,8 +194,27 @@ if ($contract && $app !== null) {
         if (preg_match('/<style\b|style\s*=|<(?:script|link)\b[^>]*(?:https?:\/\/|\/\/)/i', $html)) {
             $fail("Page-level styling or external UI dependency found in {$page}; use shared assets.");
         }
-        if ($page !== 'login.html' && !str_contains($app, $page)) {
+        if ($area === 'public') {
+            foreach (['assets/js/public-data.js', 'assets/js/public.js'] as $publicAsset) {
+                if (!str_contains($html, $publicAsset)) {
+                    $fail("Missing public renderer asset: {$publicAsset} in {$page}");
+                }
+            }
+        }
+        if ($area === 'admin' && $key !== 'login' && !str_contains($app, basename($page))) {
             $fail("Unregistered page: {$page} is missing from shared app routes.");
+        }
+        preg_match_all('/(?:src|href)="([^"#?]+)"/', $html, $assetRefs);
+        foreach ($assetRefs[1] as $ref) {
+            if (!preg_match('~^(?:https?:|mailto:)~', $ref) && !is_file(dirname($root . '/' . $page) . '/' . $ref)) {
+                $fail("Broken local entrypoint reference: {$page} -> {$ref}");
+            }
+        }
+    }
+    foreach ($contract['compatibilityRedirects'] ?? [] as $legacy => $target) {
+        $html = $read($legacy);
+        if ($html === null || !str_contains($html, 'data-redirect="' . $target . '"') || !str_contains($html, 'assets/js/redirect.js') || !is_file($root . '/' . $target)) {
+            $fail("Invalid compatibility redirect: {$legacy}");
         }
     }
     $pass('All approved HTML screens reuse CSS and shared JS assets.');

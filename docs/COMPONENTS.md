@@ -1,5 +1,15 @@
 # IT Portal Component Catalog (approved baseline)
 
+## Quick Launch Menus
+
+- Shared admin shell includes `.quick-launch-button` and fullscreen `#quickLaunch` on every workspace page, excluding Login/public pages. Uses existing theme tokens, `.surface`, `.btn`, form controls, SVG `icon()` inventory and shared editor dialog. No new dependency or backend.
+- Launcher has fixed heading/search/actions and a vertically scrollable card grid: 4 columns desktop, 3 at <=1200px, 2 at <=900px, 1 at <=650px. Search matches titles/descriptions and announces the result count. System cards derive from the existing navigation; user cards support add/edit/delete.
+- Opening locks body scroll and makes the app shell inert. Search receives focus, Tab wraps inside the active dialog, Escape closes only the top layer, and closing returns focus to the opener. The shared editor makes the launcher inert until it closes; unsaved edits require discard confirmation.
+- Personal shortcuts persist as `{version:1,items:[{id,title,url,description,icon,newTab}]}` in `it-portal-quick-launch-v1`; array order is display order, edits retain stable IDs. Data is browser/origin-local, shared across demo roles, not authentication or server configuration, and survives Reset Mock Data. No application item-count cap; browser storage limits still apply.
+- User text is escaped; URL validation allows internal paths and HTTP(S), rejects executable schemes, protocol-relative URLs, embedded credentials and control characters. New-tab links use `noopener noreferrer`. System shortcuts are read-only. Forms preserve values on validation/storage failure and do not report success unless storage succeeds.
+- States: populated, empty, filtered-empty, focus/hover, editor, delete confirmation, dirty cancellation, disabled submit, storage read/write failure. Corrupt/unsupported stored data is retained without overwrite and management is blocked until storage is repaired. Floating control/toasts use separate vertical space and the launcher is hidden in print.
+- Verification: `node scripts/check-quick-launch.cjs` using the existing Playwright development runtime; see `docs/QUICK-LAUNCH-VERIFICATION.md`. Better Design review remains **Not verified** while its service returns `HTTP 402: AGENT_QUOTA_EXHAUSTED`.
+
 **Reference:** `assets/css/styles.css` and `assets/js/app.js`. The components below already exist in the v0.1 prototype. Reuse them before creating an alternative.
 
 ## Design primitives
@@ -72,12 +82,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
-<body data-page="new-page">
+<body data-area="admin" data-page="new-page">
   <div id="app"></div>
-  <script src="assets/js/mock-data.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="../assets/js/mock-data.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
 ```
@@ -97,3 +107,25 @@ Create a new primitive only when none above fits. Document its purpose, markup, 
 ## Theme v2 extension rule
 
 All components must work in `data-theme="light"` **and** `data-theme="dark"`. Default is Dark when no preference is saved. Toggle exists in Topbar and Login; Settings has a two-choice appearance selector. Use the central `assets/css/styles.css` and root design tokens rather than separate stylesheets. Reuse `themeButton()` and `setTheme()` from the shared JS; do not create a new preference key or attach theme choice to mock data. Test contrast, keyboard focus, empty states, nested surfaces, mobile and print on both themes.
+
+## Public layout and mascot (ADR-0003)
+
+- Public shell: `.public-header`, `.public-nav`, `.public-shell`, `.public-footer`; public header is an explicit shell variant, admin retains sidebar/topbar. Uses the same central theme and tokens, buttons, panels and icon helper.
+- Service/resource items: `.public-service`, `.public-resource`, `.public-resource-grid`; visible text links/actions, theme-aware hover and focus, responsive 4/3 → 2 → 1 columns. Search/category filters preserve focus and announce result count. Filtered-empty offers reset.
+- Calendar: `.public-calendar`, `.public-day`; real buttons, spoken date/owner, textual team labels, month selector and shared detail modal. All shifts are synthetic and identified as such.
+- Mascot: `mascot(reaction, className)` renders decorative images (`alt=""`, `aria-hidden="true"`) using context-correct asset paths and reserved dimensions. Welcome hero, guide callout, question empty state, static sidebar/login illustration and success/thanks toast. All ten assets are inspectable in Settings. Never replace actionable error/status text with a character. No animation; images hidden in print; missing decorative image does not block controls.
+- Shared modal now traps Tab and restores the opener on close. Public mobile menu exposes `aria-expanded`, hides collapsed links from keyboard navigation and closes on Escape. Core states: default, hover, focus, selected/current, populated, empty, filtered-empty, modal open and closed.
+
+Action accessibility: `--action-fill` / `--action-hover` provide stronger coral fills for white button labels (Light #be4355 / #a9364a, Dark #b7435d / #a33853). `--link-ink` is #be4355 in Light and #ffabb2 in Dark. Primary identity tokens remain locked. Hover never moves button targets. Focus rings include native summary controls.
+
+## Compact half-body mascot — approved extension
+
+`mascot(reaction, className, variant='full')` preserves the full-body default. Pass `half-body` to load `assets/images/mascot/half-body/<reaction>.png`. Both variants expose `data-mascot-variant`; the decorative image retains empty alt, reserved dimensions and no interaction. Public pages use the same helper through the existing public adapter.
+
+- `.mascot-size-32`, `.mascot-size-40`, `.mascot-size-48`, `.mascot-size-64`, `.mascot-size-96` reserve an exact square and use `object-fit:contain`; all hair/hands stay within the generated square canvas. For readability, prefer 40/48px for reactions and 64/96px for tools or details. At 32px the face/gesture is supplementary, never the sole status signal.
+- Toast uses 40px success/thanks; sidebar uses 64px typing; mobile Login uses 64px welcome; public resource-detail modal uses 96px guide/warning. Hero, large Login artwork and existing full-body assets are retained.
+- `.mascot-avatar.mascot-avatar-size-32/40/48` wraps the half-body welcome artwork, zooming the face into a circular assistant illustration. It is **not** a user's profile image and never replaces `av()` or personnel initials. Provide visible assistant context when used outside Settings.
+- Settings has two independently expandable galleries (`data-gallery-variant="full"` and `half-body`), ten reactions each, plus small-size and circular-avatar samples. Layout wraps on mobile; normal gallery expansion/collapse and keyboard focus use native details/summary.
+- All variants remain static, non-focusable, theme-independent transparent PNGs, hidden in print with their preview galleries. Missing decorative artwork is hidden without removing action/status text. No automatic motion, additional UI package or backend behavior is introduced.
+
+Generation sources and exact prompts: `assets/images/mascot/half-body/prompts.json`. Validation commands: `php scripts/check-design-contract.php`, `python scripts/check-mascot-assets.py` (Pillow dev tool), and `node scripts/check-mascot-compact.cjs` with the existing Playwright runtime available through `NODE_PATH`.
