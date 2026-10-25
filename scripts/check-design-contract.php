@@ -69,8 +69,12 @@ if ($config && $contract) {
         || ($config['mascot']['style'] ?? null) !== null) {
         $fail('Mascot remains disabled with null style, animation and styleIndex.');
     }
-    if ($config['mode'] === 'light' && $config['cornerRadius'] === 32) {
-        $pass('Visual direction still explicitly specifies Light + 32px.');
+    if (($config['mode'] ?? null) === 'dark'
+        && ($config['cornerRadius'] ?? null) === 32
+        && ($contract['supportedModes'] ?? []) === ['dark', 'light']) {
+        $pass('Approved default Dark + optional Light, shared 32px radius.');
+    } else {
+        $fail('Mode contract requires Dark default with Light option and 32px radius.');
     }
 }
 
@@ -92,6 +96,28 @@ if ($css !== null && $contract) {
             $fail("CSS theme drift: {$name} expected '{$expected}', got '{$vars[$name]}'");
         }
     }
+    // Verify dark-mode values in the explicit shared selector; don't allow a palette name
+    // in docs alone to satisfy the contract.
+    foreach ($contract['themeVariants'] ?? [] as $mode => $variant) {
+        $selector = (string) ($variant['selector'] ?? '');
+        $found = $selector !== '' && preg_match('/' . preg_quote($selector, '/') . '\s*\{([^}]*)\}/s', $css, $block);
+        if (!$found) {
+            $fail("Missing {$mode} theme selector: {$selector}");
+            continue;
+        }
+        preg_match_all('/(--[a-z][a-z0-9-]*)\s*:\s*([^;]+)(?:;|$)/i', $block[1], $darkDeclarations, PREG_SET_ORDER);
+        $themeVars = [];
+        foreach ($darkDeclarations as $declaration) {
+            $themeVars[$declaration[1]] = trim($declaration[2]);
+        }
+        foreach ($variant['cssVariables'] ?? [] as $key => $expected) {
+            if (!isset($themeVars[$key])) {
+                $fail("{$mode} theme variable missing: {$key}");
+            } elseif ($compact($themeVars[$key]) !== $compact((string) $expected)) {
+                $fail("{$mode} theme drift: {$key}");
+            }
+        }
+    }
     foreach ($contract['requiredCssPatterns'] ?? [] as $pattern) {
         if (!str_contains($css, (string) $pattern)) {
             $fail("Missing approved UI component or behavior: {$pattern}");
@@ -107,6 +133,11 @@ if ($css !== null && $contract) {
 }
 
 if ($contract && $app !== null) {
+    foreach (['THEME_STORAGE', 'it-portal-theme-v1', 'data-theme-choice', 'toggle-theme', 'themeButton()', 'document.documentElement.dataset.theme'] as $marker) {
+        if (!str_contains($app, $marker)) {
+            $fail("Missing theme behavior in shared app: {$marker}");
+        }
+    }
     $expectedPages = $contract['htmlPages'] ?? [];
     $actualPages = array_map('basename', glob($root . '/*.html') ?: []);
     // One-file preview is a generated review artifact, not a page to maintain separately.

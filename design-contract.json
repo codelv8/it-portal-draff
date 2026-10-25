@@ -1,7 +1,7 @@
 {
   "$schemaVersion": "1.0",
   "name": "IT Portal Aurora Coral UI Contract",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "ownerDecisionDate": "2026-10-25",
   "reference": "DESIGN.md",
   "userVisualConfigFile": "design-config.json",
@@ -11,7 +11,7 @@
     "layout": "portal",
     "surface": "glass",
     "palette": "coral",
-    "mode": "light",
+    "mode": "dark",
     "cornerRadius": 32,
     "fontFamily": "LINE Seed Sans TH",
     "mascotEnabled": false
@@ -34,10 +34,71 @@
     "--surface-muted": "rgba(255,255,255,.52)"
   },
   "requiredCssPatterns": [
-    ".app-shell", ".sidebar", ".workspace", ".topbar", ".glass", ".card", ".btn-primary", ".page-heading", ".badge", ".modal-backdrop", ".kanban-board", ".gantt", "prefers-reduced-motion"
+    ".app-shell",
+    ".sidebar",
+    ".workspace",
+    ".topbar",
+    ".glass",
+    ".card",
+    ".btn-primary",
+    ".page-heading",
+    ".badge",
+    ".modal-backdrop",
+    ".kanban-board",
+    ".gantt",
+    "prefers-reduced-motion",
+    ".theme-choice",
+    ".theme-option",
+    ".theme-preview",
+    "html:not([data-theme=\"light\"])"
   ],
   "htmlPages": [
-    "index.html", "login.html", "my-work.html", "task-detail.html", "team-board.html", "projects.html", "project-detail.html", "roadmap.html", "kpi.html", "reports.html", "compliance.html", "service-desk.html", "notifications.html", "people.html", "activity.html", "settings.html"
+    "index.html",
+    "login.html",
+    "my-work.html",
+    "task-detail.html",
+    "team-board.html",
+    "projects.html",
+    "project-detail.html",
+    "roadmap.html",
+    "kpi.html",
+    "reports.html",
+    "compliance.html",
+    "service-desk.html",
+    "notifications.html",
+    "people.html",
+    "activity.html",
+    "settings.html"
   ],
-  "forbiddenExternalUiFrameworks": ["bootstrap", "tailwind", "react", "vue", "angular", "materialize", "bulma", "cdn.jsdelivr.net", "unpkg.com"]
+  "forbiddenExternalUiFrameworks": [
+    "bootstrap",
+    "tailwind",
+    "react",
+    "vue",
+    "angular",
+    "materialize",
+    "bulma",
+    "cdn.jsdelivr.net",
+    "unpkg.com"
+  ],
+  "supportedModes": [
+    "dark",
+    "light"
+  ],
+  "themePreferenceKey": "it-portal-theme-v1",
+  "themeVariants": {
+    "dark": {
+      "selector": "html:not([data-theme=\"light\"])",
+      "cssVariables": {
+        "--bg": "#15131f",
+        "--ink": "#f7edf5",
+        "--ink-soft": "#dfd2df",
+        "--muted": "#c6b7c5",
+        "--coral": "#ffa0a6",
+        "--coral-dark": "#ffabb2",
+        "--surface": "rgba(37,33,51,.80)",
+        "--surface-strong": "rgba(51,44,64,.95)"
+      }
+    }
+  }
 }

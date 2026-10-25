@@ -4,7 +4,7 @@
   "surface": "glass",
   "palette": "coral",
   "cornerRadius": 32,
-  "mode": "light",
+  "mode": "dark",
   "fontFamily": "LINE Seed Sans TH",
   "mascot": {
     "enabled": false,

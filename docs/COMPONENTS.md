@@ -8,8 +8,8 @@
 | --- | --- | --- |
 | App shell | `.app-shell` | single sidebar + `.workspace`; reuse on every authenticated page |
 | Side navigation | `.sidebar`, `.nav-link`, `.nav-link.active` | same navigation hierarchy, coral selected fill, mobile drawer |
-| Topbar | `.topbar`, `.breadcrumb`, `.top-actions` | breadcrumbs, search, notifications, role preview |
-| Panel | `.glass.card` | light blur, white border, soft shadow, radius 32px |
+| Topbar | `.topbar`, `.breadcrumb`, `.top-actions`, `.theme-toggle` | breadcrumbs, search, Light/Dark toggle, notifications, role preview |
+| Panel | `.glass.card` | Light frosted-white / Dark plum glass, soft border and shadow; radius 32px |
 | Inset grouping | `.surface` | neutral strong surface with small radius |
 | Page title | `.page-heading`, `.page-title`, `.page-subtitle`, `.eyebrow` | modest app headline; not a marketing hero per page |
 | Standard section | `.section-head`, `.section-title`, `.section-desc` | 24px card padding on desktop |
@@ -24,6 +24,7 @@
 | Roadmap | `.gantt`, `.gantt-row`, `.gantt-bar` | accessible labels and scroll within chart region |
 | Dialog | `.modal-backdrop`, `.modal`, `.modal-head`, `.modal-actions` | focus, Escape, cancel, validation |
 | Feedback | `.toast-holder`, `.toast`, `.empty-state` | timely plain-language feedback; no silent failures |
+| Theme choice | `.theme-choice`, `.theme-option` | Settings Light/Dark selection, `aria-pressed`, single persisted preference |
 | Misc | `.progress`, `.progress-line`, `.grid-2`, `.grid-3`, `.grid-4` | reuse existing display conventions |
 | Icons | JS `icon(name, size=19)` | reuse existing inline SVG inventory; do not mix emoji or new packs |
 
@@ -92,3 +93,7 @@
 ## Extending the catalog
 
 Create a new primitive only when none above fits. Document its purpose, markup, token usage, variants, focus/hover/disabled/error states, mobile behavior and expected screenshot. Update the central CSS/JS implementation, never leave a one-off component styling fork in an HTML page.
+
+## Theme v2 extension rule
+
+All components must work in `data-theme="light"` **and** `data-theme="dark"`. Default is Dark when no preference is saved. Toggle exists in Topbar and Login; Settings has a two-choice appearance selector. Use the central `assets/css/styles.css` and root design tokens rather than separate stylesheets. Reuse `themeButton()` and `setTheme()` from the shared JS; do not create a new preference key or attach theme choice to mock data. Test contrast, keyboard focus, empty states, nested surfaces, mobile and print on both themes.

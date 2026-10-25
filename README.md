@@ -1,4 +1,4 @@
-# IT Portal — Aurora Gradient / Coral / Glass / Light (UX/UI Draft)
+# IT Portal — Aurora Gradient / Coral / Glass / Light + Dark (UX/UI Draft)
 
 **Prototype version:** 0.1.0 · **Data context:** 25 October 2026 (mock date) · **Built with:** Native HTML, CSS, Vanilla JavaScript
 
@@ -40,7 +40,7 @@ Visit `http://localhost:8000` (or `/login.html` for the illustrative login).
 | `notifications.html` | Notifications | Read/unread, mark all as read, deep links |
 | `people.html` | People & Roles | Workload directory, proposed permissions matrix |
 | `activity.html` | Activity | Illustrative event timeline and audit field guidance |
-| `settings.html` | Settings | Compact density, simulated preferences, reset local mock data |
+| `settings.html` | Settings | Light/Dark theme choice, compact density, simulated preferences, reset local mock data |
 
 Navigation and core interactions work in the browser. Edits are stored in browser `localStorage` where available. **No server requests are made** by the prototype.
 
@@ -53,13 +53,13 @@ Navigation and core interactions work in the browser. Edits are stored in browse
   "surface": "glass",
   "palette": "coral",
   "cornerRadius": 32,
-  "mode": "light",
+  "mode": "dark",
   "fontFamily": "LINE Seed Sans TH",
   "mascot": {"enabled": false, "styleIndex": null, "animation": null, "style": null}
 }
 ```
 
-Design tokens are in `assets/css/styles.css` under `:root`. Main colors: coral `#f46f75`, peach `#ffd9bd`, lavender `#eee0ff`, mint `#d9f6e9`. Main glass surfaces use `32px` corners with a subtle translucent white material. UI primitives (buttons, badges, fields) use smaller radii for usability.
+Design tokens are in `assets/css/styles.css`: Light lives in `:root`, Dark in `html:not([data-theme="light"])`. Main colors: coral `#f46f75`, peach `#ffd9bd`, lavender `#eee0ff`, mint `#d9f6e9`. Main glass surfaces use `32px` corners with frosted white (Light) and soft charcoal-plum (Dark) materials. UI primitives (buttons, badges, fields) use smaller radii for usability.
 
 ### LINE Seed Sans TH
 
@@ -92,3 +92,10 @@ Retain the UI vocabulary and data flows, then build a server-side Native PHP app
 5. Run user acceptance testing with both IT staff and IT leads. Verify backup/restore, secure network access and contingency procedures before production.
 
 **Repository status:** Initial UX/UI baseline and AI-agent design guardrails are version controlled in this repository. Prototype only; no production backend or live records.
+
+
+## Theme v2 (Dark default / Light optional)
+
+The product owner's 2026-10-25 direction adds Dark to the approved Aurora/Coral/Glass visual system. **New browsers open in Dark**; users may switch Light/Dark from the sun/moon icon in Topbar/Login or Settings → Theme mode. The preference persists separately in `localStorage['it-portal-theme-v1']`, independent from `it-portal-aurora-mock-v2`; resetting mock records does not reset the theme. Appearance is demo-only and does not imply authentication.
+
+Both modes share one HTML/JS/CSS architecture, 32px panel radius and LINE Seed Sans TH. UI additions require screenshots/verification in both modes. See [ADR-0002](docs/decisions/ADR-0002-aurora-dark-mode.md).

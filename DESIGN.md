@@ -1,6 +1,6 @@
-# IT Portal Design System — Aurora Coral Light Glass
+# IT Portal Design System — Aurora Coral Light + Dark Glass
 
-> **Status: ACCEPTED UI BASELINE · v1.0 · 2026-10-25**  
+> **Status: ACCEPTED UI BASELINE · v2.0 · 2026-10-25**  
 > Scope: every existing and future page, module, partial, dialog, and component in `codelv8-org/it-portal`.
 >
 > **Rule:** When the mock UI and this document disagree, do not improvise. Treat `design-config.json` as the user's locked visual direction and the running baseline in `assets/css/styles.css` + existing HTML/JS as the reference implementation. Open a design-change proposal before modifying visual identity.
@@ -9,9 +9,9 @@
 
 Hospital IT work-management portal for **IT Staff** and **IT Lead**, optionally Executive Viewer later. It connects daily tasks, team workload, projects, roadmap, KPI, evidence, governance and reports.
 
-**Design identity:** light, airy, calm, professional **Aurora Gradient** with **coral** as the action accent, subtle translucent **glass** surfaces, generous **32px panel radius**, Thai-first UI in **LINE Seed Sans TH**, and **no mascot**. It is **not** the previous dark Futuristic / HUD concept.
+**Design identity:** calm professional **Aurora Gradient** in **Light + Dark**, with **coral** as the action accent, translucent **glass** surfaces, **32px panel radius**, Thai-first **LINE Seed Sans TH**, and **no mascot**. **Dark is the new default** as explicitly approved on 2026-10-25. This remains Aurora Glass, **not** the retired neon/HUD design.
 
-Visual trade-off accepted: the light/soft glass direction is welcoming and reduces visual harshness, but translucent panels can compromise readability. Therefore keep content legible and use stronger foreground / surface values on tables, forms and dense screens. Clarity and safe operation outrank decorative blur.
+Visual trade-off accepted: Light keeps the original airy look; Dark reduces glare, but extra translucent layers can compromise readability. Therefore keep content legible in **both** modes, using stronger foreground / surface values on tables, forms and dense screens. Clarity and safe operation outrank decorative blur.
 
 ## 2. Locked visual contract
 
@@ -21,16 +21,16 @@ Visual trade-off accepted: the light/soft glass direction is welcoming and reduc
 | --- | --- | --- |
 | Visual direction | Aurora Gradient reference | soft large-scale coral/peach/lavender/mint ambient radial gradients |
 | Layout | Portal | persistent sidebar, topbar, main workspace, mobile drawer |
-| Surface | Glass | translucent white, subtle light border, backdrop blur, soft shadow |
+| Surface | Glass | warm frosted white (Light), translucent charcoal-plum (Dark), subtle stroke, blur and soft shadow |
 | Palette | Coral | coral for selected/action states; semantic colors for status only |
-| Mode | Light | do not generate a dark theme or HUD until explicitly approved |
+| Mode | **Dark (default) + Light (user choice)** | root `data-theme`; localStorage key `it-portal-theme-v1`; no separate product/HUD styling |
 | Main panel radius | **32px** | `--radius`, `.glass` panels, dialog |
 | Inner/card radius | **19px** | `--radius-small`, small surfaces; buttons ~15px, input ~15px |
 | Font | **LINE Seed Sans TH** | fallback: Noto Sans Thai / Tahoma / system-ui |
 | Mascot | **Disabled** | no mascots, avatar illustrations, assistant characters or animations |
 | Technology | HTML + CSS + Vanilla JS; later Native PHP | do not introduce Tailwind, Bootstrap, React or a new UI library without approval |
 
-**Canonical CSS variables currently in `assets/css/styles.css`:**
+**Canonical Light token layer** in `assets/css/styles.css` (`:root`), preserved for backward compatibility:
 
 ```css
 :root {
@@ -53,7 +53,7 @@ Visual trade-off accepted: the light/soft glass direction is welcoming and reduc
 }
 ```
 
-Other legacy colors in the v0.1 prototype are transitional implementation values, **not** permission to introduce new palettes. Prefer the above custom properties and existing component variants in new code. Do not use rainbow gradients, neon outlines, dark glass, glowing HUD borders or arbitrary purple/blue buttons as a new visual identity.
+The shared Dark layer is defined in `html:not([data-theme="light"])`; it provides intentionally contrast-adjusted Coral, ink and glass tokens. Other prototype colors are transitional implementation values, **not** permission to introduce new palettes. Prefer the above custom properties and existing component variants in new code. Do not use rainbow gradients, neon outlines, dark glass, glowing HUD borders or arbitrary purple/blue buttons as a new visual identity.
 
 ### Typography and spacing
 
@@ -88,7 +88,7 @@ Reuse existing classes. See [`docs/COMPONENTS.md`](docs/COMPONENTS.md) for imple
 
 | Need | Existing reusable contract |
 | --- | --- |
-| Light frosted panel | `.glass.card` |
+| Frosted panel (both modes) | `.glass.card` |
 | Secondary inset surface | `.surface` |
 | Primary action | `.btn.btn-primary` |
 | Secondary action | `.btn.btn-outline`, `.btn.btn-ghost`, `.btn.btn-soft` |
@@ -127,8 +127,32 @@ Reuse existing classes. See [`docs/COMPONENTS.md`](docs/COMPONENTS.md) for imple
 
 ## 7. Change control and precedence
 
-Visual identity changes (primary palette, theme mode, font, 32px radius, mascot, sidebar pattern, component library) require **explicit product-owner approval** and a change entry in `docs/decisions/ADR-0001-visual-baseline.md` or a new ADR. Keep `design-config.json`, `design-contract.json`, `DESIGN.md`, CSS and screenshots in sync within the same PR.
+Visual identity changes (primary palette, modes, font, 32px radius, mascot, sidebar pattern, component library) require **explicit product-owner approval** and a new ADR; dual-mode approval is captured in `docs/decisions/ADR-0002-aurora-dark-mode.md`. Keep `design-config.json`, `design-contract.json`, `DESIGN.md`, CSS and screenshots in sync within the same PR.
 
 **Order of authority:** explicit new user direction > `design-config.json` (locked visual identity) > `DESIGN.md` and `design-contract.json` > existing baseline UI CSS/HTML > module-local styling suggestions. When a genuine conflict remains, stop and report it instead of silently creating a parallel theme.
 
 **Approval scope:** accepted appearance only. This acceptance does **not** establish production security, accessibility compliance, or factual KPI/CTAM+ certification.
+
+
+## 8. Approved Theme v2 — Light + Dark (2026-10-25)
+
+- **Dark is the default** for a new browser. Users can switch using the **sun/moon button** in the shared Topbar or Login; Settings → Theme mode provides a Light/Dark segmented choice. Selection survives page navigation via `localStorage['it-portal-theme-v1']` and is **not** erased by Reset Mock Data.
+- The document root uses `data-theme="light"` for Light and `data-theme="dark"` for Dark. Until the JavaScript initializes, **no attribute intentionally resolves to Dark** via `html:not([data-theme="light"])` to avoid a white flash on initial load.
+- **Never duplicate CSS or create a separate `*-dark.html`.** Keep both modes in `assets/css/styles.css`; shared components, semantic badge labels and states must be identical. New components require **Light and Dark** styles and focus/hover/disabled/empty/error coverage.
+- Do not alter `mascot.enabled: false` as part of the theme change. Approved mascot assets (if added later) require a separate Product Owner decision and independent UI scope.
+
+### v2 Dark tokens (authoritative)
+
+| CSS token | Dark | Purpose |
+| --- | --- | --- |
+| `--bg` | `#15131f` | base canvas |
+| `--ink` | `#f7edf5` | main text |
+| `--ink-soft` | `#dfd2df` | secondary text |
+| `--muted` | `#c6b7c5` | metadata/labels |
+| `--coral` | `#ffa0a6` | light Coral detail |
+| `--coral-dark` | `#ffabb2` | readable text/link accent |
+| `--surface` | `rgba(37,33,51,.80)` | main glass cards |
+| `--surface-strong` | `rgba(51,44,64,.95)` | inset cards/form surfaces |
+| `--radius` | `32px` | stable across modes |
+
+**Contrast and visual QA:** Dark does **not** mean pure black, high-saturation neon or glowing HUD borders. It uses plum-tinted glass with subdued Coral/Lavender ambient aurora. Coral primary buttons retain darker fills and white labels; pale Coral is an accent, not a low-contrast CTA fill. Verify at 390, 1440 and 1728px on **both** themes; verify Login, Dashboard, data tables, Kanban, Gantt, evidence, settings, all dialogs and print in Dark. Never use `color-scheme: dark` as a substitute for semantic token mapping.

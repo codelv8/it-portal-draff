@@ -11,7 +11,7 @@ What user problem does this solve? Which Staff / IT Lead / Admin workflow change
 
 ## Design contract
 
-- [ ] Matches `DESIGN.md`: Aurora Gradient / coral / glass / light / 32px / LINE Seed Sans TH / no mascot
+- [ ] Matches `DESIGN.md`: Aurora Gradient / coral / glass / **Dark default + Light option** / 32px / LINE Seed Sans TH / mascot disabled
 - [ ] Uses shared app shell and tokens, no new UI framework or visual theme
 - [ ] Any intentional visual change has an approved ADR
 
@@ -19,8 +19,8 @@ What user problem does this solve? Which Staff / IT Lead / Admin workflow change
 
 - Design guard: `php scripts/check-design-contract.php` ->
 - JS syntax if applicable ->
-- Desktop before/after images (1440 or 1728) ->
-- Mobile before/after images (390) ->
+- Desktop before/after images (1440 or 1728) in Light **and** Dark ->
+- Mobile before/after images (390) in Light **and** Dark ->
 - Keyboard, focus, validation, empty/error states ->
 - Console errors ->
 
